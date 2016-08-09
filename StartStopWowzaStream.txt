@@ -1,0 +1,32 @@
+Livestream Configurations That Were Used Below
+
+Wowza version: 4.4.1
+Application name: marauder
+Stream file name: marauder.stream
+Stream file directory: ${com.wowza.wms.context.VHostConfigHome}/content/marauder
+
+
+Connect to stream from WOWZA API
+
+
+curl --digest -u "mydigestusername:mydigestpassword" -X PUT --header 'Accept:application/json; charset=utf-8' --header 'Content-type:application/json; charset=utf-8' "http://154.278.12.7:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/[APPLICATION-NAME]/streamfiles/[STREAM-NAME]/actions/connect?connectAppName=[APPLICATION-NAME]&appInstance=_definst_&mediaCasterType=liverepeater&dstEntryName=[APPLICATION-FOLDER-NAME]"
+
+NB: You need to specify 'dstEntryName' if your stream file is in a folder and not in content/
+
+Example
+
+curl --digest -u "mydigestusername:mydigestpassword" -X PUT --header 'Accept:application/json; charset=utf-8' --header 'Content-type:application/json; charset=utf-8' "http://154.278.12.7:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/marauder/streamfiles/marauder/actions/connect?connectAppName=marauder&appInstance=_definst_&mediaCasterType=liverepeater&dstEntryName=marauder"
+
+Disconnect stream from WOWZA API
+
+
+curl --digest -u "mydigestusername:mydigestpassword" -X PUT --header 'Accept:application/json; charset=utf-8' --header 'Content-type:application/json; charset=utf-8' "http://199.147.47.2:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/[APPLICATION-NAME]/instances/_definst_/incomingstreams/[STREAM-NAME=STREAM-FILE-NAME]/actions/disconnectStream
+
+
+
+Example
+
+
+curl --digest -u "mydigestusername:mydigestpassword" -X PUT --header 'Accept:application/json; charset=utf-8' --header 'Content-type:application/json; charset=utf-8' "http://154.278.12.7:8087/v2/servers/_defaultServer_/vhosts/_defaultVHost_/applications/marauder/instances/_definst_/incomingstreams/marauder.stream/actions/disconnectStream"
+
+
